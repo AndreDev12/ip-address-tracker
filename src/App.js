@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
 import useFetch from './hooks/useFetch';
@@ -38,7 +38,7 @@ function App() {
   }
   
   return (
-    <Fragment>
+    <>
       <Header
         title="IP Address Tracker" 
         address={address}
@@ -56,7 +56,7 @@ function App() {
         latitude={latitude}
         longitude={longitude}
       />
-    </Fragment>
+    </>
   );
 }
 
