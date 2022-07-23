@@ -1,7 +1,34 @@
+import { useRef, useState } from "react";
+import { ReactComponent as IconArrow } from '../assets/icons/icon-arrow.svg';
+import useFetch from "../hooks/useFetch";
 import Error from "./Error";
 
-const Header = ({title, address, city, region, timezone, isp, handleChange, handleSubmit, error, form, errorMessage}) => {
-    
+// const Header = ({title, address, city, region, timezone, isp, handleChange, handleSubmit, error, form, errorMessage}) => {
+const Header = ({title}) => {
+
+    const {address, city, region, timezone, isp} = useFetch();
+    // const [ipAddress, setIpAddress] = useState('');
+    const [address, setAddress] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState(false);
+    const form = useRef();
+
+    const handleChange = ({target}) => {
+        setIpAddress(target.value)
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if(ipAddress.trim() === ''){
+            setErrorMessage("Required IP address");
+            setError(true);
+            return;
+        }
+        setAddress();
+        setError(false);
+        form.current.reset();
+    }
+
     return (
         <header className="header">
             <div className="content container">
@@ -14,29 +41,19 @@ const Header = ({title, address, city, region, timezone, isp, handleChange, hand
                     <input 
                         className="form-ip-address"
                         type="text"
-                        onChange={handleChange}
                         placeholder="Search for any IP address"
+                        // value={ipAddress}
+                        value={address}
+                        onChange={handleChange}
                     />
                     <button 
                         className="search"
                         type="submit"
                     >
-                        <svg
-                            className="icon" 
-                            xmlns="http://www.w3.org/2000/svg" width="11"
-                            height="14"
-                        >
-                            <path
-                                className="path"
-                                fill="none"
-                                stroke="#FFF"
-                                strokeWidth="3"
-                                d="M2 1l6 6-6 6"
-                            />
-                        </svg>
+                        <IconArrow />
                     </button>
                 </form>
-                {error ? <Error message={errorMessage}/> : null}
+                {error && <Error message={errorMessage} />}
             </div>
             <div className="information container">
                 <div className="information-content">

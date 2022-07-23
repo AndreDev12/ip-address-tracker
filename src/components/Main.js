@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 
 import IconLocation from './IconLocation';
@@ -7,7 +6,7 @@ const Main = ({latitude, longitude}) => {
 
     if(latitude === 0 || longitude === 0) return null;
     return (
-        <Fragment>
+        <>
             <MapContainer 
                 className="map" 
                 center={[latitude, longitude]}
@@ -25,7 +24,7 @@ const Main = ({latitude, longitude}) => {
                 >
                 </Marker>
             </MapContainer>
-        </Fragment>
+        </>
     );
 }
  
