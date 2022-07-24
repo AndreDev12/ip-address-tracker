@@ -3,12 +3,9 @@ import { ReactComponent as IconArrow } from '../assets/icons/icon-arrow.svg';
 import useFetch from "../hooks/useFetch";
 import Error from "./Error";
 
-// const Header = ({title, address, city, region, timezone, isp, handleChange, handleSubmit, error, form, errorMessage}) => {
 const Header = ({title}) => {
 
-    const {address, city, region, timezone, isp} = useFetch();
-    // const [ipAddress, setIpAddress] = useState('');
-    const [address, setAddress] = useState('');
+    const {ipAddress, city, region, timezone, isp, setIpAddress} = useFetch();
     const [errorMessage, setErrorMessage] = useState('');
     const [error, setError] = useState(false);
     const form = useRef();
@@ -24,7 +21,7 @@ const Header = ({title}) => {
             setError(true);
             return;
         }
-        setAddress();
+        setIpAddress('');
         setError(false);
         form.current.reset();
     }
@@ -42,8 +39,7 @@ const Header = ({title}) => {
                         className="form-ip-address"
                         type="text"
                         placeholder="Search for any IP address"
-                        // value={ipAddress}
-                        value={address}
+                        value={ipAddress}
                         onChange={handleChange}
                     />
                     <button 
@@ -59,7 +55,7 @@ const Header = ({title}) => {
                 <div className="information-content">
                     <div className="flex">
                         <h3 className="heading">ip address</h3>
-                        <p className="paragraph ip-address">{address}</p>
+                        <p className="paragraph ip-address">{ipAddress}</p>
                     </div>
                     <div className="flex">
                         <h3 className="heading">location</h3>

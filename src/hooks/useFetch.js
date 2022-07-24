@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 
-// const useFetch = (address, setAddress, setLatitude, setLongitude, setCity, setRegion, setTimezone, setIsp, setErrorMessage, setError, setState) => {
-
 const useFetch = () => {
 
+  const [ipAddress, setIpAddress] = useState('');
   const [information, setInformation] = useState({
-    address: '',
     latitude: 0,
     longitude: 0,
     city: '',
@@ -14,14 +12,14 @@ const useFetch = () => {
     isp: ''
   });
 
-  const {address, latitude, longitude, city, region, timezone, isp} = information;
+  const {latitude, longitude, city, region, timezone, isp} = information;
 
   useEffect(() => {
     async function fetchData(){
 
       try {
         const apiKey = "at_sBg3CL1Vz1eG5WCrVElyomgsjbOlU";
-        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${address}`;
+        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`;
     
         const response = await fetch(url);
         const result = await response.json();
@@ -36,37 +34,30 @@ const useFetch = () => {
         // setError(false);
         const {ip, isp, location:{city, region, timezone, lat, lng}} = result;
         setInformation({
-          address: ip,
           latitude: lat,
           longitude: lng,
           city: city,
           region: region,
           timezone: timezone,
           isp: isp
-        })
-        // setAddress(ip);
-        // setLatitude(lat);
-        // setLongitude(lng);
-        // setCity(city);
-        // setRegion(region);
-        // setTimezone(timezone);
-        // setIsp(isp); 
+        });
+        setIpAddress(ip);
       } catch (error) {
         console.log(error)
       }    
     }
     fetchData();
-  // }, [address, setAddress, setCity, setIsp, setLatitude, setLongitude, setRegion, setTimezone, setError, setErrorMessage, setState]);
-  }, [address]);
+  }, [ipAddress]);
 
   return {
-    address,
+    ipAddress,
     latitude,
     longitude,
     city,
     region,
     timezone,
-    isp
+    isp,
+    setIpAddress
   }
 }
 

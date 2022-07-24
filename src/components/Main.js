@@ -1,8 +1,10 @@
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-
+import useFetch from '../hooks/useFetch';
 import IconLocation from './IconLocation';
 
-const Main = ({latitude, longitude}) => {
+const Main = () => {
+
+    const {latitude, longitude} = useFetch();
 
     if(latitude === 0 || longitude === 0) return null;
     return (
