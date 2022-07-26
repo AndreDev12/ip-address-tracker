@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useFetch = () => {
 
-  const [ipAddress, setIpAddress] = useState('');
+  const [ipAddress2, setIpAddress] = useState('');
   const [information, setInformation] = useState({
     latitude: 0,
     longitude: 0,
@@ -18,8 +18,8 @@ const useFetch = () => {
     async function fetchData(){
 
       try {
-        const apiKey = "at_sBg3CL1Vz1eG5WCrVElyomgsjbOlU";
-        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`;
+        const apiKey = "at_CKHAU3ija26s5KFZxMeZDfDcpFafI";
+        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress2}`;
     
         const response = await fetch(url);
         const result = await response.json();
@@ -47,10 +47,10 @@ const useFetch = () => {
       }    
     }
     fetchData();
-  }, [ipAddress]);
+  }, [ipAddress2]);
 
   return {
-    ipAddress,
+    ipAddress2,
     latitude,
     longitude,
     city,

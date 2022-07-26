@@ -48,22 +48,23 @@
         border: none;
         flex-basis: 6rem;
         transition: background-color .3s;
-        .icon{
-            background-color: darken($color: s.$very-dark-gray, $amount: 20%);
-            border-radius: 0 1rem 1rem 0;
-            height: 4.5rem;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 6rem;
-            &:hover{
-                background-color: lighten($color: s.$very-dark-gray, $amount: 10%);
-                cursor: s.$pointer;
-            }
-            .path{
-                transform: translateX(40%) translateY(35%);
-            }
-        }
+    }
+}
+
+.icon{
+    background-color: darken($color: s.$very-dark-gray, $amount: 20%);
+    border-radius: 0 1rem 1rem 0;
+    height: 4.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 6rem;
+    &:hover{
+        background-color: lighten($color: s.$very-dark-gray, $amount: 10%);
+        cursor: s.$pointer;
+    }
+    .path{
+        transform: translateX(40%) translateY(35%);
     }
 }
 

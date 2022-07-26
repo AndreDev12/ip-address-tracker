@@ -1,18 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 import { ReactComponent as IconArrow } from '../assets/icons/icon-arrow.svg';
-import useFetch from "../hooks/useFetch";
-import Error from "./Error";
+import useFetch from '../hooks/useFetch';
+import useForm from '../hooks/useForm';
+import Error from './Error';
 
 const Header = ({title}) => {
 
-    const {ipAddress, city, region, timezone, isp, setIpAddress} = useFetch();
+    const {ipAddress, handleChange, handleReset} = useForm();
+    const {ipAddress2, city, region, timezone, isp, setIpAddress} = useFetch();
     const [errorMessage, setErrorMessage] = useState('');
     const [error, setError] = useState(false);
     const form = useRef();
-
-    const handleChange = ({target}) => {
-        setIpAddress(target.value)
-    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -21,9 +19,11 @@ const Header = ({title}) => {
             setError(true);
             return;
         }
-        setIpAddress('');
+        setIpAddress(ipAddress);
         setError(false);
-        form.current.reset();
+        handleReset();
+        // form.current.reset();
+        // setIpAddress('');
     }
 
     return (
@@ -39,6 +39,7 @@ const Header = ({title}) => {
                         className="form-ip-address"
                         type="text"
                         placeholder="Search for any IP address"
+                        name="ipAddress"
                         value={ipAddress}
                         onChange={handleChange}
                     />
@@ -55,7 +56,7 @@ const Header = ({title}) => {
                 <div className="information-content">
                     <div className="flex">
                         <h3 className="heading">ip address</h3>
-                        <p className="paragraph ip-address">{ipAddress}</p>
+                        <p className="paragraph ip-address">{ipAddress2}</p>
                     </div>
                     <div className="flex">
                         <h3 className="heading">location</h3>
