@@ -1,30 +1,7 @@
-import { useRef, useState } from 'react';
 import { ReactComponent as IconArrow } from '../assets/icons/icon-arrow.svg';
-import useFetch from '../hooks/useFetch';
-import useForm from '../hooks/useForm';
 import Error from './Error';
 
-const Header = ({title}) => {
-
-    const {ipAddress, handleChange, handleReset} = useForm();
-    const {ipAddress2, city, region, timezone, isp, setIpAddress} = useFetch();
-    const [errorMessage, setErrorMessage] = useState('');
-    const [error, setError] = useState(false);
-    const form = useRef();
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        if(ipAddress.trim() === ''){
-            setErrorMessage("Required IP address");
-            setError(true);
-            return;
-        }
-        setIpAddress(ipAddress);
-        setError(false);
-        handleReset();
-        // form.current.reset();
-        // setIpAddress('');
-    }
+const Header = ({title, ipAddress, error, errorMessage, ipAddressLatest, city, region, timezone, isp, handleChange, handleSubmit}) => {
 
     return (
         <header className="header">
@@ -33,7 +10,6 @@ const Header = ({title}) => {
                 <form 
                     className="form"
                     onSubmit={handleSubmit}
-                    ref={form}
                 >
                     <input 
                         className="form-ip-address"
@@ -56,7 +32,7 @@ const Header = ({title}) => {
                 <div className="information-content">
                     <div className="flex">
                         <h3 className="heading">ip address</h3>
-                        <p className="paragraph ip-address">{ipAddress2}</p>
+                        <p className="paragraph ip-address">{ipAddressLatest}</p>
                     </div>
                     <div className="flex">
                         <h3 className="heading">location</h3>

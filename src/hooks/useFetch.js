@@ -2,24 +2,24 @@ import { useEffect, useState } from 'react';
 
 const useFetch = () => {
 
-  const [ipAddress2, setIpAddress] = useState('');
+  const [ipAddressLatest, setIpAddressLatest] = useState('');
   const [information, setInformation] = useState({
-    latitude: 0,
-    longitude: 0,
+    lat: 0,
+    lng: 0,
     city: '',
     region: '',
     timezone: '',
     isp: ''
   });
 
-  const {latitude, longitude, city, region, timezone, isp} = information;
+  const {lat, lng, city, region, timezone, isp} = information;
 
   useEffect(() => {
     async function fetchData(){
 
       try {
         const apiKey = "at_CKHAU3ija26s5KFZxMeZDfDcpFafI";
-        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress2}`;
+        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
     
         const response = await fetch(url);
         const result = await response.json();
@@ -34,30 +34,30 @@ const useFetch = () => {
         // setError(false);
         const {ip, isp, location:{city, region, timezone, lat, lng}} = result;
         setInformation({
-          latitude: lat,
-          longitude: lng,
-          city: city,
-          region: region,
-          timezone: timezone,
-          isp: isp
+          lat,
+          lng,
+          city,
+          region,
+          timezone,
+          isp
         });
-        setIpAddress(ip);
+        setIpAddressLatest(ip);
       } catch (error) {
         console.log(error)
       }    
     }
     fetchData();
-  }, [ipAddress2]);
+  }, [ipAddressLatest]);
 
   return {
-    ipAddress2,
-    latitude,
-    longitude,
+    ipAddressLatest,
+    lat,
+    lng,
     city,
     region,
     timezone,
     isp,
-    setIpAddress
+    setIpAddressLatest
   }
 }
 

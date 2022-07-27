@@ -14,7 +14,9 @@ const useForm = () => {
     }
 
     function handleReset(){
-        setForm(form)
+        setForm({
+            ipAddress: ''
+        })
     }
 
     const {ipAddress} = form; 
