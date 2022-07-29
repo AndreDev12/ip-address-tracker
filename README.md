@@ -25,7 +25,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./src/assets/images/Screenshot%20IP%20Address%20Tracker.png)
+![](./src/assets/images/Screenshot%20IP%20Address%20Tracker%20mobile.png)
+![](./src/assets/images/Screenshot%20IP%20Address%20Tracker%20desktop.png)
 
 ### Links
 

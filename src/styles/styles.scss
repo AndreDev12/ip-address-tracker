@@ -1,7 +1,5 @@
-@use './base/base';
-@use './base/settings';
-
-// Components
-@use './components/addressInformation';
-@use './components/header';
-@use './components/main';
+@use 'base/base';
+@use 'base/settings';
+@use 'components/addressInformation';
+@use 'components/header';
+@use 'components/main';

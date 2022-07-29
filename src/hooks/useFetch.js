@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 const useFetch = () => {
 
   const [ipAddressLatest, setIpAddressLatest] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState(false);
   const [information, setInformation] = useState({
     lat: 0,
     lng: 0,
@@ -25,13 +27,10 @@ const useFetch = () => {
         const result = await response.json();
         
         if(result.code === 422 || result.code === 403){
-          // setErrorMessage(result.messages);
-          // setState('');
-          // setError(true);
+          setErrorMessage(result.messages);
+          setError(true);
           return;
         }
-        // setState('');
-        // setError(false);
         const {ip, isp, location:{city, region, timezone, lat, lng}} = result;
         setInformation({
           lat,
@@ -43,7 +42,7 @@ const useFetch = () => {
         });
         setIpAddressLatest(ip);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }    
     }
     fetchData();
@@ -51,13 +50,17 @@ const useFetch = () => {
 
   return {
     ipAddressLatest,
+    errorMessage,
+    error,
     lat,
     lng,
     city,
     region,
     timezone,
     isp,
-    setIpAddressLatest
+    setIpAddressLatest,
+    setErrorMessage,
+    setError
   }
 }
 

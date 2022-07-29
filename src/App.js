@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
 import useForm from './hooks/useForm';
@@ -9,9 +8,7 @@ import './styles/styles.scss';
 function App() {
 
   const {ipAddress, handleChange, handleReset} = useForm();
-  const {ipAddressLatest, city, region, timezone, isp, lat, lng, setIpAddressLatest} = useFetch();
-  const [errorMessage, setErrorMessage] = useState('');
-  const [error, setError] = useState(false);
+  const {ipAddressLatest, city, region, timezone, isp, lat, lng, errorMessage, error, setIpAddressLatest, setErrorMessage, setError} = useFetch();
 
   const handleSubmit = e => {
     e.preventDefault();
