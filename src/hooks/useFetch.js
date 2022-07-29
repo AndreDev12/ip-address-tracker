@@ -20,7 +20,7 @@ const useFetch = () => {
     async function fetchData(){
 
       try {
-        const apiKey = "at_CKHAU3ija26s5KFZxMeZDfDcpFafI";
+        const apiKey = "at_mcX1xQKQL4VDT18xKrPWYzIljEarR";
         const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
     
         const response = await fetch(url);
