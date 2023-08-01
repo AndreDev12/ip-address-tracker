@@ -1,31 +1,30 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const useForm = () => {
+  const [form, setForm] = useState({
+    ipAddress: "",
+  });
 
-    const [form, setForm] = useState({
-        ipAddress: ''
+  function handleChange({ target }) {
+    setForm({
+      ...form,
+      [target.name]: target.value,
     });
+  }
 
-    function handleChange({target}){
-        setForm({
-            ...form,
-            [target.name]: target.value
-        })
-    }
+  function handleReset() {
+    setForm({
+      ipAddress: "",
+    });
+  }
 
-    function handleReset(){
-        setForm({
-            ipAddress: ''
-        })
-    }
+  const { ipAddress } = form;
 
-    const {ipAddress} = form; 
-
-    return {
-        ipAddress,
-        handleChange,
-        handleReset
-    }
-}
+  return {
+    ipAddress,
+    handleChange,
+    handleReset,
+  };
+};
 
 export default useForm;

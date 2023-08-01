@@ -1,4 +1,4 @@
-import { ReactComponent as IconArrow } from '../assets/icons/icon-arrow.svg';
+import SearchIcon from './SearchIcon'; 
 import Error from './Error';
 
 const Header = ({title, ipAddress, error, errorMessage, ipAddressLatest, city, region, timezone, isp, handleChange, handleSubmit}) => {
@@ -23,7 +23,7 @@ const Header = ({title, ipAddress, error, errorMessage, ipAddressLatest, city, r
                         className="search"
                         type="submit"
                     >
-                        <IconArrow />
+                        <SearchIcon />
                     </button>
                 </form>
                 {error && <Error message={errorMessage} />}
