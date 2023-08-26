@@ -1,8 +1,8 @@
-@use '../base/mixins' as m;
 @use '../base/settings' as s;
+@use '../base/mixins' as m;
 
 .header{
-    background-image: url('../../assets/images/patternc-bg.png');
+    background-image: url('/pattern-bg.png');
     background-position: 54%;
     background-size: cover;
     height: 25rem;

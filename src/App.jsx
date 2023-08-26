@@ -1,8 +1,7 @@
+import useFetch from './hooks/useFetch';
+import useForm from './hooks/useForm';
 import Header from './components/Header';
 import Main from './components/Main';
-import useForm from './hooks/useForm';
-import useFetch from './hooks/useFetch';
-
 import './styles/styles.scss';
 
 function App() {
