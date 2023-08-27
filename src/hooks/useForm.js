@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const useForm = () => {
   const [form, setForm] = useState({
-    ipAddress: "",
+    ipAddress: '',
   });
 
   function handleChange({ target }) {
@@ -14,7 +14,7 @@ const useForm = () => {
 
   function handleReset() {
     setForm({
-      ipAddress: "",
+      ipAddress: '',
     });
   }
 

@@ -1,80 +1,80 @@
 @use '../base/settings' as s;
 @use '../base/mixins' as m;
 
-.header{
-    background-image: url('/pattern-bg.png');
-    background-position: 54%;
-    background-size: cover;
-    height: 25rem;
-    padding: .1rem;
-    .content{
-        margin-top: 2rem;
-    }   
-    .title{
-        color: s.$white;
-        font-size: 2.5rem;
-        font-weight: 500;
-        text-align: center;
-        @include m.desktop{
-            font-size: 3rem;
-        }
-    } 
-}
-
-.form{
-    border-radius: 1rem;
-    display: flex;
-    height: 4.5rem;
+.header {
+  background-image: url('/pattern-bg.png');
+  background-position: 54%;
+  background-size: cover;
+  height: 25rem;
+  padding: 0.1rem;
+  .content {
     margin-top: 2rem;
-    overflow: hidden;
-    position: relative;
-    @include m.mobile{
-        margin-inline: auto;
-        width: 35rem;
-    }
-    @include m.desktop{
-        width: 55rem;
-    }
-    .form-ip-address{
-        border: none;
-        color: darken($color: s.$dark-gray, $amount: 20%);
-        cursor: s.$pointer;
-        flex: 1;
-        font-size: 1.6rem;
-        outline: none;
-        padding: 1rem 3rem;
-    }
-    .search{
-        border: none;
-        flex-basis: 6rem;
-        transition: background-color .3s;
-    }
-}
-
-.icon{
-    background-color: darken($color: s.$very-dark-gray, $amount: 20%);
-    border-radius: 0 1rem 1rem 0;
-    height: 4.5rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 6rem;
-    &:hover{
-        background-color: lighten($color: s.$very-dark-gray, $amount: 10%);
-        cursor: s.$pointer;
-    }
-    .path{
-        transform: translateX(40%) translateY(35%);
-    }
-}
-
-.error{
-    color: s.$dark-gray;
-    font-size: 1.5rem;
-    margin-top: 1.2rem;
+  }
+  .title {
+    color: s.$white;
+    font-size: 2.5rem;
+    font-weight: 500;
     text-align: center;
-    @include m.desktop{
-        font-size: 2rem;
-        margin-top: 1.6rem;
+    @include m.desktop {
+      font-size: 3rem;
     }
+  }
+}
+
+.form {
+  border-radius: 1rem;
+  display: flex;
+  height: 4.5rem;
+  margin-top: 2rem;
+  overflow: hidden;
+  position: relative;
+  @include m.mobile {
+    margin-inline: auto;
+    width: 35rem;
+  }
+  @include m.desktop {
+    width: 55rem;
+  }
+  .form-ip-address {
+    border: none;
+    color: darken($color: s.$dark-gray, $amount: 20%);
+    cursor: s.$pointer;
+    flex: 1;
+    font-size: 1.6rem;
+    outline: none;
+    padding: 1rem 3rem;
+  }
+  .search {
+    border: none;
+    flex-basis: 6rem;
+    transition: background-color 0.3s;
+  }
+}
+
+.icon {
+  background-color: darken($color: s.$very-dark-gray, $amount: 20%);
+  border-radius: 0 1rem 1rem 0;
+  height: 4.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6rem;
+  &:hover {
+    background-color: lighten($color: s.$very-dark-gray, $amount: 10%);
+    cursor: s.$pointer;
+  }
+  .path {
+    transform: translateX(40%) translateY(35%);
+  }
+}
+
+.error {
+  color: s.$dark-gray;
+  font-size: 1.5rem;
+  margin-top: 1.2rem;
+  text-align: center;
+  @include m.desktop {
+    font-size: 2rem;
+    margin-top: 1.6rem;
+  }
 }

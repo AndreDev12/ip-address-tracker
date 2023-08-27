@@ -5,21 +5,33 @@ import Main from './components/Main';
 import './styles/styles.scss';
 
 function App() {
+  const { ipAddress, handleChange, handleReset } = useForm();
+  const {
+    ipAddressLatest,
+    city,
+    region,
+    timezone,
+    isp,
+    lat,
+    lng,
+    errorMessage,
+    error,
+    setIpAddressLatest,
+    setErrorMessage,
+    setError,
+  } = useFetch();
 
-  const {ipAddress, handleChange, handleReset} = useForm();
-  const {ipAddressLatest, city, region, timezone, isp, lat, lng, errorMessage, error, setIpAddressLatest, setErrorMessage, setError} = useFetch();
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(ipAddress.trim() === ''){
-      setErrorMessage("Required IP address");
+    if (ipAddress.trim() === '') {
+      setErrorMessage('Required IP address');
       setError(true);
       return;
     }
     setIpAddressLatest(ipAddress);
     setError(false);
     handleReset();
-  }
+  };
 
   return (
     <>
@@ -32,14 +44,11 @@ function App() {
         city={city}
         region={region}
         timezone={timezone}
-        isp={isp} 
+        isp={isp}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <Main 
-        lat={lat}
-        lng={lng}
-      />
+      <Main lat={lat} lng={lng} />
     </>
   );
 }
