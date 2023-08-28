@@ -16,13 +16,14 @@ const useFetch = () => {
   const { lat, lng, city, region, timezone, isp } = information;
 
   useEffect(() => {
-    async function fetchData() {
+    async function getData() {
       try {
         const apiKey = 'at_mcX1xQKQL4VDT18xKrPWYzIljEarR';
         const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
 
         const response = await fetch(url);
         const result = await response.json();
+        // console.log(result);
 
         if (result.code === 422 || result.code === 403) {
           setErrorMessage(result.messages);
@@ -47,7 +48,7 @@ const useFetch = () => {
         console.log(error);
       }
     }
-    fetchData();
+    getData();
   }, [ipAddressLatest]);
 
   return {

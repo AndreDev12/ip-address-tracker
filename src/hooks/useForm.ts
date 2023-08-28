@@ -1,11 +1,20 @@
 import { useState } from 'react';
 
+interface IEventTarget {
+  target: INameValue;
+}
+
+interface INameValue {
+  name: string;
+  value: string;
+}
+
 const useForm = () => {
   const [form, setForm] = useState({
     ipAddress: '',
   });
 
-  function handleChange({ target }) {
+  function handleChange({ target }: IEventTarget) {
     setForm({
       ...form,
       [target.name]: target.value,
