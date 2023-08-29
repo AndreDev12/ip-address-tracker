@@ -28,7 +28,7 @@
   margin-top: 2rem;
   overflow: hidden;
   position: relative;
-  @include m.mobile {
+  @include m.mobileLarge {
     margin-inline: auto;
     width: 35rem;
   }

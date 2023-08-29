@@ -1,20 +1,30 @@
 import { useState } from 'react';
 
-interface IEventTarget {
-  target: INameValue;
+import useFetch from './useGetMapInformation';
+
+interface Form {
+  ipAddress: string;
 }
 
-interface INameValue {
+interface EventTarget {
+  target: NameValue;
+}
+
+interface NameValue {
   name: string;
   value: string;
 }
 
 const useForm = () => {
-  const [form, setForm] = useState({
+  const { setErrorMessage, setError, setIpAddressLatest } = useFetch();
+
+  const [form, setForm] = useState<Form>({
     ipAddress: '',
   });
 
-  function handleChange({ target }: IEventTarget) {
+  const { ipAddress } = form;
+
+  function handleChange({ target }: EventTarget) {
     setForm({
       ...form,
       [target.name]: target.value,
@@ -27,12 +37,23 @@ const useForm = () => {
     });
   }
 
-  const { ipAddress } = form;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (ipAddress.trim() === '') {
+      setErrorMessage('Required IP address');
+      setError(true);
+      return;
+    }
+    setIpAddressLatest(ipAddress);
+    setError(false);
+    handleReset();
+  };
 
   return {
     ipAddress,
     handleChange,
     handleReset,
+    handleSubmit,
   };
 };
 

@@ -1,8 +1,8 @@
-interface IError {
+interface Props {
   message: string;
 }
 
-const Error = ({ message }: IError) => {
+const Error = ({ message }: Props) => {
   return <p className="error">{message}</p>;
 };
 

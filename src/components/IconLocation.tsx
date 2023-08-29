@@ -1,14 +1,8 @@
 import L from 'leaflet';
-import Icon from '../assets/icons/icon-location.svg';
 
 const IconLocation = L.icon({
-  iconUrl: Icon,
+  iconUrl: '../assets/icons/icon-location.svg',
   iconSize: [46, 60],
-  iconAnchor: null,
-  popupAnchor: null,
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
 });
 
 export default IconLocation;

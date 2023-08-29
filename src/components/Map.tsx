@@ -1,10 +1,16 @@
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+
 import IconLocation from './IconLocation';
 
-const Main = ({ lat, lng }) => {
+interface Props {
+  lat: number;
+  lng: number;
+}
+
+const Map = ({ lat, lng }: Props) => {
   return (
     <>
-      {!(lat === 0 || lng === 0) && (
+      {!(lat === 0 && lng === 0) && (
         <MapContainer
           className="map"
           center={[lat, lng]}
@@ -23,4 +29,4 @@ const Main = ({ lat, lng }) => {
   );
 };
 
-export default Main;
+export default Map;

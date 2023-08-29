@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react';
 
-const useFetch = () => {
-  const [ipAddressLatest, setIpAddressLatest] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [error, setError] = useState(false);
-  const [information, setInformation] = useState({
+interface Props {
+  lat: number;
+  lng: number;
+  city: string;
+  region: string;
+  timezone: string;
+  isp: string;
+}
+
+const useGetMapInformation = () => {
+  const [ipAddressLatest, setIpAddressLatest] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+  const [information, setInformation] = useState<Props>({
     lat: 0,
     lng: 0,
     city: '',
@@ -23,9 +32,8 @@ const useFetch = () => {
 
         const response = await fetch(url);
         const result = await response.json();
-        // console.log(result);
 
-        if (result.code === 422 || result.code === 403) {
+        if (result.code === 403 || result.code === 422) {
           setErrorMessage(result.messages);
           setError(true);
           return;
@@ -67,4 +75,4 @@ const useFetch = () => {
   };
 };
 
-export default useFetch;
+export default useGetMapInformation;

@@ -1,19 +1,19 @@
 @use './settings' as s;
 
-@mixin mobile {
-  @media screen and (min-width: s.$mobile) {
+@mixin mobileLarge {
+  @media (width >= s.$mobileLarge) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media screen and (min-width: s.$tablet) {
+  @media (width >= s.$tablet) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media screen and (min-width: s.$desktop) {
+  @media (width >= s.$desktop) {
     @content;
   }
 }
