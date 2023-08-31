@@ -1,5 +1,4 @@
 import useGetMapInformation from './hooks/useGetMapInformation';
-import useForm from './hooks/useForm';
 import Header from './components/Header';
 import Map from './components/Map';
 import './styles/styles.scss';

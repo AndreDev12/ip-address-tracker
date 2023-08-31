@@ -14,20 +14,15 @@ interface Props {
 }
 
 const Header = ({ title }: Props) => {
-  const { ipAddress, handleChange, handleReset, handleSubmit } = useForm();
+  const { ipAddress, handleChange, handleSubmit } = useForm();
   const {
     ipAddressLatest,
     city,
     region,
     timezone,
     isp,
-    lat,
-    lng,
     errorMessage,
-    error,
-    setIpAddressLatest,
-    setErrorMessage,
-    setError,
+    hasError,
   } = useGetMapInformation();
 
   return (
@@ -47,7 +42,7 @@ const Header = ({ title }: Props) => {
             <SearchIcon />
           </button>
         </form>
-        {error && <Error message={errorMessage} />}
+        {hasError && <Error message={errorMessage} />}
       </div>
       <div className="information container">
         <div className="information-content">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState } from 'react';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 const useGetMapInformation = () => {
   const [ipAddressLatest, setIpAddressLatest] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [error, setError] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   const [information, setInformation] = useState<Props>({
     lat: 0,
     lng: 0,
@@ -35,7 +36,7 @@ const useGetMapInformation = () => {
 
         if (result.code === 403 || result.code === 422) {
           setErrorMessage(result.messages);
-          setError(true);
+          setHasError(true);
           return;
         }
         const {
@@ -62,7 +63,7 @@ const useGetMapInformation = () => {
   return {
     ipAddressLatest,
     errorMessage,
-    error,
+    hasError,
     lat,
     lng,
     city,
@@ -71,7 +72,7 @@ const useGetMapInformation = () => {
     isp,
     setIpAddressLatest,
     setErrorMessage,
-    setError,
+    setHasError,
   };
 };
 

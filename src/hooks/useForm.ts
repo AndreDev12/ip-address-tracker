@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import useFetch from './useGetMapInformation';
+import useGetMapInformation from './useGetMapInformation';
 
 interface Form {
   ipAddress: string;
@@ -16,7 +16,8 @@ interface NameValue {
 }
 
 const useForm = () => {
-  const { setErrorMessage, setError, setIpAddressLatest } = useFetch();
+  const { setErrorMessage, setHasError, setIpAddressLatest } =
+    useGetMapInformation();
 
   const [form, setForm] = useState<Form>({
     ipAddress: '',
@@ -41,11 +42,11 @@ const useForm = () => {
     e.preventDefault();
     if (ipAddress.trim() === '') {
       setErrorMessage('Required IP address');
-      setError(true);
+      setHasError(true);
       return;
     }
     setIpAddressLatest(ipAddress);
-    setError(false);
+    setHasError(false);
     handleReset();
   };
 
