@@ -25,8 +25,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./src/assets/images/Screenshot%20IP%20Address%20Tracker%20mobile.png)
-![](./src/assets/images/Screenshot%20IP%20Address%20Tracker%20desktop.png)
+![](./src/assets/images/ip-address-tracker-mobile.png)
+![](./src/assets/images/ip-address-tracker-desktop.png)
 
 ### Links
 
@@ -39,11 +39,13 @@ Users should be able to:
 
 - Mobile-first workflow
 - [Sass](https://sass-lang.com/) - CSS Preprocessor
+- [TypeScript](https://www.typescriptlang.org/) - JS superset
 - [React](https://reactjs.org/) - JS library
 - [IPify](https://geo.ipify.org/) - IP Geolocation API
 - [Leaflet](https://leafletjs.com//) - JS library
 
 ## Author
 
-- Frontend Mentor - [@AndreDev12](https://www.frontendmentor.io/profile/AndreDev12)
+- Portfolio - [<AndreDev />](https://andredev.vercel.app/)
 - LinkedIn - [Héctor André Huambachano Torres](https://www.linkedin.com/in/h%C3%A9ctor-andr%C3%A9-huambachano-torres/)
+- Frontend Mentor - [@AndreDev12](https://www.frontendmentor.io/profile/AndreDev12)
