@@ -46,6 +46,6 @@ Users should be able to:
 
 ## Author
 
-- Portfolio - [<AndreDev />](https://andredev.vercel.app/)
+- Portfolio - [AndreDev](https://andredev.vercel.app/)
 - LinkedIn - [Héctor André Huambachano Torres](https://www.linkedin.com/in/h%C3%A9ctor-andr%C3%A9-huambachano-torres/)
 - Frontend Mentor - [@AndreDev12](https://www.frontendmentor.io/profile/AndreDev12)
