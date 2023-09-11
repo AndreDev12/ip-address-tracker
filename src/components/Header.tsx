@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import {
   ipAddressHeading,
   locationHeading,
@@ -5,6 +7,7 @@ import {
   ispHeading,
 } from '../constants';
 import useGetMapInformation from '../hooks/useGetMapInformation';
+import { IpAddressContext } from '../context/ipAddress';
 import SearchIcon from './SearchIcon';
 import useForm from '../hooks/useForm';
 import Error from './Error';
@@ -14,16 +17,11 @@ interface Props {
 }
 
 const Header = ({ title }: Props) => {
-  const { ipAddress, handleChange, handleSubmit } = useForm();
-  const {
-    ipAddressLatest,
-    city,
-    region,
-    timezone,
-    isp,
-    errorMessage,
-    hasError,
-  } = useGetMapInformation();
+  const { ipAddressLatest, ipAddress, hasError, errorMessage } =
+    useContext(IpAddressContext);
+
+  const { handleSubmit, handleChange } = useForm();
+  const { city, ...rest } = useGetMapInformation();
 
   return (
     <header className="header">
@@ -33,7 +31,7 @@ const Header = ({ title }: Props) => {
           <input
             className="form-ip-address"
             type="text"
-            placeholder="Search for any IP address"
+            placeholder="Example: 162.254.206.227"
             name="ipAddress"
             value={ipAddress}
             onChange={handleChange}
@@ -52,17 +50,15 @@ const Header = ({ title }: Props) => {
           </div>
           <div className="flex">
             <h3 className="heading">{locationHeading}</h3>
-            <p className="paragraph location">
-              {city}, {region}
-            </p>
+            <p className="paragraph location">{`${city}, ${rest.region}`}</p>
           </div>
           <div className="flex">
             <h3 className="heading">{timezoneHeading}</h3>
-            <p className="paragraph timezone">UTC {timezone}</p>
+            <p className="paragraph timezone">UTC {rest.timezone}</p>
           </div>
           <div className="flex">
             <h3 className="heading">{ispHeading}</h3>
-            <p className="paragraph isp">{isp}</p>
+            <p className="paragraph isp">{rest.isp}</p>
           </div>
         </div>
       </div>

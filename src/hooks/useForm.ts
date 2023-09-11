@@ -1,59 +1,35 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 
-import useGetMapInformation from './useGetMapInformation';
-
-interface Form {
-  ipAddress: string;
-}
-
-interface EventTarget {
-  target: NameValue;
-}
-
-interface NameValue {
-  name: string;
-  value: string;
-}
+import { IpAddressContext } from '../context/ipAddress';
 
 const useForm = () => {
-  const { setErrorMessage, setHasError, setIpAddressLatest } =
-    useGetMapInformation();
+  const {
+    ipAddress,
+    setIpAddress,
+    setIpAddressLatest,
+    setHasError,
+    setErrorMessage,
+  } = useContext(IpAddressContext);
 
-  const [form, setForm] = useState<Form>({
-    ipAddress: '',
-  });
-
-  const { ipAddress } = form;
-
-  function handleChange({ target }: EventTarget) {
-    setForm({
-      ...form,
-      [target.name]: target.value,
-    });
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setIpAddress(e.target.value);
   }
 
-  function handleReset() {
-    setForm({
-      ipAddress: '',
-    });
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (ipAddress.trim() === '') {
-      setErrorMessage('Required IP address');
       setHasError(true);
+      setErrorMessage('Required IP address');
       return;
     }
-    setIpAddressLatest(ipAddress);
     setHasError(false);
-    handleReset();
-  };
+    setErrorMessage('');
+    setIpAddressLatest(ipAddress);
+    setIpAddress('');
+  }
 
   return {
-    ipAddress,
     handleChange,
-    handleReset,
     handleSubmit,
   };
 };

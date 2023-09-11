@@ -1,16 +1,14 @@
-import useGetMapInformation from './hooks/useGetMapInformation';
+import IpAddressProvider from './context/ipAddress/provider';
 import Header from './components/Header';
 import Map from './components/Map';
 import './styles/styles.scss';
 
 function App() {
-  const { lat, lng } = useGetMapInformation();
-
   return (
-    <>
+    <IpAddressProvider>
       <Header title="IP Address Tracker" />
-      <Map lat={lat} lng={lng} />
-    </>
+      <Map />
+    </IpAddressProvider>
   );
 }
 

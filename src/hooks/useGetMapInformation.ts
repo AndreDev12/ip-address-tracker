@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
-interface Props {
+import { IpAddressContext } from '../context/ipAddress';
+
+interface Information {
   lat: number;
   lng: number;
   city: string;
@@ -11,10 +13,10 @@ interface Props {
 }
 
 const useGetMapInformation = () => {
-  const [ipAddressLatest, setIpAddressLatest] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [hasError, setHasError] = useState<boolean>(false);
-  const [information, setInformation] = useState<Props>({
+  const { ipAddressLatest, setIpAddressLatest, setHasError, setErrorMessage } =
+    useContext(IpAddressContext);
+
+  const [information, setInformation] = useState<Information>({
     lat: 0,
     lng: 0,
     city: '',
@@ -28,10 +30,10 @@ const useGetMapInformation = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const apiKey = 'at_mcX1xQKQL4VDT18xKrPWYzIljEarR';
-        const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
+        const apiKey = 'at_iseeZUFaEh6EPRWadRiXpj7gxfAeT';
+        const endPoint = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
 
-        const response = await fetch(url);
+        const response = await fetch(endPoint);
         const result = await response.json();
 
         if (result.code === 403 || result.code === 422) {
@@ -39,6 +41,7 @@ const useGetMapInformation = () => {
           setHasError(true);
           return;
         }
+
         const {
           ip,
           isp,
@@ -52,7 +55,9 @@ const useGetMapInformation = () => {
           timezone,
           isp,
         });
-        setIpAddressLatest(ip);
+        if (ipAddressLatest === '') {
+          setIpAddressLatest(ip);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -61,18 +66,12 @@ const useGetMapInformation = () => {
   }, [ipAddressLatest]);
 
   return {
-    ipAddressLatest,
-    errorMessage,
-    hasError,
     lat,
     lng,
     city,
     region,
     timezone,
     isp,
-    setIpAddressLatest,
-    setErrorMessage,
-    setHasError,
   };
 };
 
