@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 
 import useGetMapInformation from '../hooks/useGetMapInformation';
+import SkeletonContainer from './SkeletonContainer';
 import LocationIcon from './LocationIcon';
 
 const Map = () => {
@@ -8,7 +10,9 @@ const Map = () => {
 
   return (
     <>
-      {!(lat === 0 && lng === 0) && (
+      {!lat ? (
+        <SkeletonContainer />
+      ) : (
         <MapContainer
           className="map"
           center={[lat, lng]}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useEffect, useState, useContext } from 'react';
 
@@ -30,7 +31,7 @@ const useGetMapInformation = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const apiKey = 'at_iseeZUFaEh6EPRWadRiXpj7gxfAeT';
+        const apiKey = 'at_Gbo508Dxlh4KW15HeSorAy8mra5c0';
         const endPoint = `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddressLatest}`;
 
         const response = await fetch(endPoint);
@@ -47,6 +48,7 @@ const useGetMapInformation = () => {
           isp,
           location: { city, region, timezone, lat, lng },
         } = result;
+
         setInformation({
           lat,
           lng,
@@ -55,7 +57,7 @@ const useGetMapInformation = () => {
           timezone,
           isp,
         });
-        if (ipAddressLatest === '') {
+        if (!ipAddressLatest) {
           setIpAddressLatest(ip);
         }
       } catch (error) {

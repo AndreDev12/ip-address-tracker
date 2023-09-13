@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useContext } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import {
   ipAddressHeading,
@@ -45,20 +47,30 @@ const Header = ({ title }: Props) => {
       <div className="information container">
         <div className="information-content">
           <div className="flex">
-            <h3 className="heading">{ipAddressHeading}</h3>
-            <p className="paragraph ip-address">{ipAddressLatest}</p>
+            <h3 className="heading">
+              {ipAddressLatest ? ipAddressHeading : <Skeleton />}
+            </h3>
+            <p className="paragraph ip-address">
+              {ipAddressLatest || <Skeleton />}
+            </p>
           </div>
           <div className="flex">
-            <h3 className="heading">{locationHeading}</h3>
-            <p className="paragraph location">{`${city}, ${rest.region}`}</p>
+            <h3 className="heading">{city ? locationHeading : <Skeleton />}</h3>
+            <p className="paragraph location">
+              {city ? `${city}, ${rest.region}` : <Skeleton />}
+            </p>
           </div>
           <div className="flex">
-            <h3 className="heading">{timezoneHeading}</h3>
-            <p className="paragraph timezone">UTC {rest.timezone}</p>
+            <h3 className="heading">
+              {rest.timezone ? timezoneHeading : <Skeleton />}
+            </h3>
+            <p className="paragraph timezone">
+              {rest.timezone ? `UTC ${rest.timezone}` : <Skeleton />}
+            </p>
           </div>
           <div className="flex">
-            <h3 className="heading">{ispHeading}</h3>
-            <p className="paragraph isp">{rest.isp}</p>
+            <h3 className="heading">{rest.isp ? ispHeading : <Skeleton />}</h3>
+            <p className="paragraph isp">{rest.isp || <Skeleton />}</p>
           </div>
         </div>
       </div>
